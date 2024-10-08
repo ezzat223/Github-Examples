@@ -45,6 +45,8 @@ jobs:
         
       - name: The job has succeeded
         if: ${{ success() }}
+        run: echo "The job was successful!"
       
-      - name: The job has failed
-        if: ${{ failure() }}         # there is also always() and cancelled()
+      - name: The job has failed      # you can also use always() and cancelled()
+        if: ${{ failure() }}          
+        run: echo "The job failed."
