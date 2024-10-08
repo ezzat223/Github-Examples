@@ -12,8 +12,8 @@ jobs:
       issues: write
     steps:
       - name: Open a NEW Issue.
-        # env:
-        #   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh issue --repo ${{ github.repository }} \
             create --title "github_token.yml" --body "Testing GITHUB_TOKEN Secret"
