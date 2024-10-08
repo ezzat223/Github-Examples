@@ -5,7 +5,8 @@ jobs:
     my-context:
         runs-on: ubuntu-latest
         steps:
-            - name: My step
+            - 
+              name: My step
               env:
                 MY_ACTION: ${{ github.action }}
                 MY_ACTOR: ${{ github.actor }}

@@ -11,21 +11,22 @@ jobs:
     env: 
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true  
     steps:
-      - name: Checkout code
+      - 
+        name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Create Swift File
+      - 
+        name: Create Swift File
         run: |
           echo 'print("Hello from Swift on macOS")' > hello.swift
-
-      - name: Install dependencies
+      - 
+        name: Install dependencies
         run: |
           brew install swiftlint
-
-      - name: Run SwiftLint
+      - 
+        name: Run SwiftLint
         run: swiftlint
-
-      - name: Compile and run Swift program
+      - 
+        name: Compile and run Swift program
         run: |
           swiftc hello.swift
           ./hello

@@ -15,13 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # step 1
-      - uses: actions/checkout@v2
-      - name: hello world
+      - 
+        uses: actions/checkout@v2
+      - 
+        name: hello world
         run: echo "Hello world"
         shell: bash
-      
       # step 2
-      - name: "Echo basic information"
+      - 
+        name: "Echo basic information"
         run: |
           echo "REF: $GITHUB_REF"
           echo "Job ID: $GITHUB_JOB"
@@ -33,6 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     # step 1
     steps:
-      - name: goodbye world
+      - 
+        name: goodbye world
         run: echo "Goodbye world"
         shell: bash

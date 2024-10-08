@@ -11,7 +11,8 @@ jobs:
       contents: read
       issues: write
     steps:
-      - name: Open a NEW Issue.
+      - 
+        name: Open a NEW Issue.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

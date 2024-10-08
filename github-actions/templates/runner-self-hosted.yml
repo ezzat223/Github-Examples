@@ -13,8 +13,9 @@ jobs:
     env: 
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true  
     steps:
-      - name: Check out repository
+      - 
+        name: Check out repository
         uses: actions/checkout@v3
-
-      - name: Run a one-line script
+      - 
+        name: Run a one-line script
         run: echo "Hello from a self-hosted runner!"

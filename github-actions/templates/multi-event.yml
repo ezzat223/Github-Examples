@@ -11,7 +11,8 @@ jobs:
   hello_world:
     runs-on: ubuntu-latest
     steps:
-      - name: "Echo Basic Information"
+      - 
+        name: "Echo Basic Information"
         run: |
           echo "REF: $GITHUB_REF"
           echo "Job ID: $GITHUB_JOB"
