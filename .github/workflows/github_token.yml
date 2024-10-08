@@ -1,0 +1,20 @@
+# At the start of each Workflow Job, GitHub automatically creats a Unique GITHUB_TOKEN secret to use in the Workflow.
+# You can use the GITHUB_TOKEN to authenticate in the job.
+name: GitHub Token test
+on: 
+  workflow_dispatch:
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Open a NEW Issue.
+        # env:
+        #   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue --repo ${{ github.repository }} \
+            create --title "github_token.yml" --body "Testing GITHUB_TOKEN Secret"
+        
