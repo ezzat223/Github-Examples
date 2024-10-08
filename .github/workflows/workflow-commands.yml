@@ -21,7 +21,7 @@ jobs:
             - name: Set environment variable
               run: echo "ACTION_ENV=production" >> $GITHUB_ENV
             - name: Check new env var
-              run: echo "$GITHUB_ENV"
+              run: echo "$ACTION_ENV"
     
     # set outputs that can be used by other jobs in a multi-job workflow
     set-output:
