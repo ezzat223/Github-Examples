@@ -8,6 +8,7 @@ jobs:
             - name: My step
               env:
                 MY_ACTION: ${{ github.action }}
+                MY_ACTOR: ${{ github.actor }}
                 ACTION: production
               run: echo "Hello $MY_ACTION, $ACTION"
               
