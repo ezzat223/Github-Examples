@@ -22,7 +22,7 @@ jobs:
         name: Archive Production Artifacts
         run: |
           mkdir -p release  # Create release directory
-          tar -czvf release/release-${{ github.ref_name }}.tar.gz .
+          tar -czvf release/release-${{ github.ref_name }}.tar.gz . # create a compressed tarball of the current directory's contents, with the tag name
       - 
         name: Create GitHub Release
         id: create_release
@@ -32,11 +32,11 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}  # Use tag name
           release_name: Release ${{ github.ref_name }}  # Name of the release
-          draft: false
-          prerelease: false
+          draft: false        # means the release will not be a draft and will be publicly available.
+          prerelease: false   # means the release will not be marked as a pre-release.
           body: "Description of the release"
       - 
-        name: Upload Release Asset
+        name: Upload Release Asset # it will upload the previously created release asset to the GitHub release.
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

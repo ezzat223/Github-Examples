@@ -1,0 +1,13 @@
+name: Redis container example
+on:
+    push:
+
+jobs:
+    container-job:
+        runs-on: ubuntu-latest
+        # this job will run inside a Docker container with image "node:16-bullseys"
+        # an environment that mimics a standalone instance of Node.js.
+        container: node:16-bullseys
+        services:
+            redis: # container
+                image: redis

@@ -1,0 +1,20 @@
+name: Redis container example
+on:
+    push:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        services:
+            redis:
+                image: redis     # container
+                ports: 
+                    - 6379:6379  # This allows the job to communicate with Redis using this port. as it's running on the vm not container
+                credentials:
+                    username: ${{ secrets.DOCKERHUB_USERNAME }}
+                    password: ${{ secrets.DOCKERHUB_TOKEN }}
+            db:
+                image: ghcr.io/octocat/testdb:latest
+                credentials:
+                    username: ${{ github.repository_owner }}
+                    password: ${{ secrets.GITHUB_TOKEN }}
