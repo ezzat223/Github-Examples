@@ -1,4 +1,3 @@
-require('dotenv').config(); // load .env file
 const { Client } = require("pg");
 
 const pgclient = new Client({
@@ -38,5 +37,6 @@ pgclient.query(text, values, (err, res) => {
 pgclient.query("SELECT * FROM student", (err, res) => {
   if (err) throw err;
   console.log(err, res.rows); // Print the data in student table
+  console.log(process.env.POSTGRES_HOST);
   pgclient.end();
 });
