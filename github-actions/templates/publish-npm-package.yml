@@ -1,0 +1,47 @@
+name: Publish GitHub NPM Package
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - tsconfig-project/**
+  workflow_dispatch:
+
+jobs:
+  npm-publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tsconfig-project
+    # halt all jobs as soon as any job fails. This means that if one job encounters an error, the remaining jobs will not continue executing.
+    strategy:
+      fail-fast: true
+    steps:
+      - 
+        uses: actions/checkout@v2
+      - 
+        name: Setup Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+      - 
+        name: Configure git # needed when the workflow creates a new commit
+        run: |
+            git config user.email "ezzat22hegazy@gmail.com"
+            git config user.name "ezzat223"
+      - 
+        name: Bump version # increment patch by 1
+        run: yarn version --patch --message "Bump version to %s"
+      - 
+        name: Push changes
+        run: |
+            git push
+            git push --follow-tags
+      - 
+        name: publish to github
+        run: |
+          npm config set registry https://npm.pkg.github.com
+          npm set //npm.pkg.github.com/:_authToken ${{ env.NODE_AUTH_TOKEN }}
+          npm run publish:github
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
