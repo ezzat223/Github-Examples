@@ -1,0 +1,37 @@
+name: Build a maven Project and chache dependencies
+on:
+    push:
+
+jobs:
+    build-on-ubuntu:
+        runs-on: ubuntu-latest
+        steps:
+            - 
+              name: Step 1 - Checkout repo
+              uses: actions/checkout@v2
+            - 
+              name: Step 2 - Setup JDK 1.8
+              uses: actions/setup-java@v1
+              with:
+                java-version: 1.8
+            - 
+              name: Step 3 - Build with Maven
+              run: |
+                mvn -B package --file pom.xml
+                mkdir staging && cp target/*.jar staging
+            - 
+              name: Step 4 - Setup a cache for Maven
+              uses: actions/cache@v2
+              with:
+                # The location of the local Maven repository where dependencies are stored.
+                path: ~/.m2
+                # The cache key combines the OS and a hash of the pom.xml file. If the pom.xml file changes, the cache will update.
+                key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+                restore-keys: ${{ runner.os }}-m2
+            -
+              name: Step 5 - Persist workflow data as Artifacts.
+              # This step uploads the generated .jar files from the staging directory as an artifact that can be downloaded later.
+              uses: actions/upload-artifact@v2
+              with:
+                name: github-actions-artifact
+                path: staging

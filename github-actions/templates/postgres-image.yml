@@ -18,13 +18,16 @@ jobs:
           - 5432:5432
 
     steps:
-      - name: Check out repository code
+      - 
+        name: Check out repository code
         uses: actions/checkout@v4
-      - name: Install dependencies
+      - 
+        name: Install dependencies
         run: |
           cd ./github-actions/pg/
           npm install
-      - name: Connect to PostgreSQL
+      - 
+        name: Connect to PostgreSQL
         run: node ./github-actions/pg/client.js
         env:
           POSTGRES_HOST: localhost
